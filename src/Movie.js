@@ -9,10 +9,10 @@ export default function Movie({title, rating, deleteMovie}) {
         return stars;
     }
     return (
-        <li data-grade={rating} data-title={title}>
+        <div data-grade={rating} data-title={title}>
             {title}
             {addStars(rating)}
-            <img src="images/delete.png" onClick={() => deleteMovie(title, rating)} alt="Delete"/>
-        </li>
+            <img src="images/delete.png" onClick={deleteMovie} alt="Delete"/>
+        </div>
     )
 }

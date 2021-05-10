@@ -7,9 +7,8 @@ function App() {
   const [betyg, setRating] = useState(0)
   const [movieList, setMoviesList] = useState([])
 
-  const deleteMovie = (title, rating) => {
-
-    const newMovieList = movieList.filter(movie => movie.title !== title && movie.rating !== rating)
+  const deleteMovie = (index) => {
+    const newMovieList = movieList.filter((movie, i) => index !== i)
     setMoviesList(newMovieList)
   }
 
@@ -35,6 +34,18 @@ function App() {
 
   }
 
+  const sortMoviesByName = () => {
+    const newMovieList = [...movieList]
+    newMovieList.sort((a, b) => (a.title >= b.title) ? 1 : -1)
+    setMoviesList(newMovieList)
+  }
+
+  const sortMoviesByRating = () => {
+    const newMovieList = [...movieList]
+    newMovieList.sort((a, b) => (a.rating <= b.rating) ? 1 : -1)
+    setMoviesList(newMovieList)
+  }
+
   return (
     <div className="App">
       <h1>Min filmlista</h1>
@@ -58,6 +69,8 @@ function App() {
         </label>
         <input type="submit" value="Spara film" />
       </form>
+      <button onClick={sortMoviesByName}>Alfabetisk ordning</button>
+      <button onClick={sortMoviesByRating}>Betygsordning</button>
       <MovieList movieList={movieList} deleteMovie={deleteMovie} />
     </div>
   );
